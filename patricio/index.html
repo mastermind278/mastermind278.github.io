@@ -5,7 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="theme-color" content="#1f6fd6">
-<title>Patricio's Pup Truck Rally</title>
+<title>PawJam</title>
+<meta name="description" content="PawJam: Patricio's monster truck rescue rally with the pups!">
 <style>
   * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; user-select: none; -webkit-user-select: none; }
   html, body { margin: 0; height: 100%; overflow: hidden; background: #7fd0ff; font-family: "Trebuchet MS", "Arial Rounded MT Bold", Arial, sans-serif; touch-action: none; }
@@ -74,8 +75,8 @@
 </div>
 
 <div class="overlay show" id="select">
-  <h1>Patricio's Pup Truck Rally</h1>
-  <p class="sub">Pick your pup and their monster truck!</p>
+  <h1>🐾 PawJam 🚚</h1>
+  <p class="sub">Patricio's monster truck rescue rally! Pick your pup!</p>
   <div id="pups"></div>
 </div>
 
@@ -758,7 +759,7 @@ function startGame(p) {
   controlsEl.style.display = 'flex';
   topbarEl.style.display = 'flex';
   sfx.bark();
-  speak(p.name + '! ' + p.line + ' Ready for action, Patricio!');
+  speak('Paw Jam! ' + p.name + '! ' + p.line + ' Ready for action, Patricio!');
 }
 
 function winLevel() {
