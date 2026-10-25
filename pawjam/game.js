@@ -6,36 +6,36 @@ import * as THREE from './three.module.min.js';
 const PUPS = [
   { id: 'chase', name: 'Chase', color: '#1f6fd6', dark: '#123f8a', design: 'police', line: 'Chase is on the case!',
     look: { fur: '#c98a4b', top: '#6b3f1f', muzzle: '#f4dcb4', ear: 'pointy', earFur: '#7a4a26', eye: '#6b3a1a', hat: 'police' },
-    ab: { key: 'nitro', icon: '🚨', name: 'Nitro Boost', desc: 'Zooms past anything in the way!' } },
+    ab: { key: 'nitro', icon: '🚨', name: 'Nitro Boost', desc: 'Super speed! Smashes through EVERYTHING!' } },
   { id: 'marshall', name: 'Marshall', color: '#e0322b', dark: '#931b16', design: 'fire', line: "I'm all fired up!",
     look: { fur: '#ffffff', top: null, muzzle: '#ffffff', ear: 'floppy', earFur: '#ffffff', spots: true, eye: '#2f7fd6', hat: 'fire' },
-    ab: { key: 'water', icon: '💦', name: 'Water Cannon', desc: 'Puts out fires and washes away mud!' } },
+    ab: { key: 'water', icon: '💦', name: 'Water Cannon', desc: 'Blasts rocks, fires, mud and cars right off the track!' } },
   { id: 'skye', name: 'Skye', color: '#ff6fae', dark: '#b8346f', design: 'heli', line: "This pup's gotta fly!",
     look: { fur: '#e8c18e', top: '#d4a46a', muzzle: '#fbeedb', ear: 'floppy', earFur: '#c9955a', eye: '#c2185b', hat: 'pilot' },
-    ab: { key: 'glide', icon: '🚁', name: 'Heli Glide', desc: 'Extra airtime! Glides over giant gaps.' } },
+    ab: { key: 'glide', icon: '🚁', name: 'Heli Flight', desc: 'Takes off and FLIES over everything!' } },
   { id: 'rubble', name: 'Rubble', color: '#ffc21a', dark: '#b88600', design: 'dozer', line: 'Rubble on the double!',
     look: { fur: '#d9a066', top: '#c2834a', muzzle: '#ffffff', ear: 'small', earFur: '#b8763c', eye: '#6b3a1a', hat: 'hardhat', chubby: true },
-    ab: { key: 'blade', icon: '🚧', name: 'Bulldozer', desc: 'Smashes stone walls and rocks without slowing down!' } },
+    ab: { key: 'blade', icon: '🚧', name: 'Bulldozer', desc: 'Always smashes stone. Special plows through EVERYTHING!' } },
   { id: 'rocky', name: 'Rocky', color: '#2fae4a', dark: '#1a7230', design: 'recycle', line: "Don't lose it, reuse it!",
     look: { fur: '#a3acb7', top: '#7d8692', muzzle: '#f1f3f5', ear: 'pointy', earFur: '#7d8692', eye: '#6b3a1a', hat: 'cap' },
-    ab: { key: 'magnet', icon: '♻️', name: 'Recycle Magnet', desc: 'Grab 3 scrap gears to fix the truck (+1 heart)!' } },
+    ab: { key: 'magnet', icon: '♻️', name: 'Recycle Magnet', desc: 'Turns junk into gears and pulls in every bone! 3 gears = +1 ❤' } },
   { id: 'zuma', name: 'Zuma', color: '#ff8a1f', dark: '#b45600', design: 'hover', line: "Let's dive in!",
     look: { fur: '#7a4a24', top: '#653a1a', muzzle: '#a8703f', ear: 'floppy', earFur: '#5c3416', eye: '#8a5a2b', hat: 'cap' },
-    ab: { key: 'hover', icon: '🌊', name: 'Hovercraft', desc: 'Mud never slows Zuma! Hovers over water.' } },
+    ab: { key: 'hover', icon: '🌊', name: 'Hovercraft', desc: 'Mud never slows Zuma! Hovers high over rocks, fire and water!' } },
   { id: 'everest', name: 'Everest', color: '#1fb5a8', dark: '#0f7a71', design: 'plow', line: 'Off the trail, Everest never fails!',
     look: { fur: '#ffffff', top: '#8d97a8', muzzle: '#ffffff', ear: 'pointy', earFur: '#8d97a8', eye: '#3fa7d6', hat: 'goggles', hatColor2: '#7b3fe4' },
-    ab: { key: 'plow', icon: '❄️', name: 'Snow Plow', desc: 'Never slips on ice. Plows through snowmen and walls!' } },
+    ab: { key: 'plow', icon: '❄️', name: 'Snow Plow', desc: 'Never slips on ice. Special plows through ANYTHING!' } },
   { id: 'tracker', name: 'Tracker', color: '#7fa23a', dark: '#4f6b1c', design: 'jungle', line: "I'm all ears!",
     look: { fur: '#d9a464', top: '#b8803f', muzzle: '#f6dcb5', ear: 'big', earFur: '#d9a464', eye: '#6b3a1a', hat: 'explorer' },
-    ab: { key: 'ears', icon: '👂', name: 'Super Ears', desc: 'Pulls in bones and friends from far away!' } },
+    ab: { key: 'ears', icon: '👂', name: 'Super Ears', desc: 'Hears danger and jumps for you! Pulls in bones and friends!' } },
   { id: 'liberty', name: 'Liberty', color: '#9b59d0', dark: '#62309a', design: 'city', line: "Let's roll, Liberty style!",
     look: { fur: '#9a5a2e', top: '#7a4220', muzzle: '#c88a5a', ear: 'long', earFur: '#6e3a1a', eye: '#6b3a1a', hat: 'goggles', hatColor2: '#ffd23f' },
-    ab: { key: 'dash', icon: '🏙️', name: 'City Dash', desc: 'Triple jump, plus a super dash!' } },
+    ab: { key: 'dash', icon: '🏙️', name: 'City Dash', desc: 'Triple jump! Special zooms ahead in a flash, smashing everything!' } },
   { id: 'rex', name: 'Rex', color: '#8bc34a', dark: '#567d22', design: 'dino', line: 'Dino rescue, roar!',
     look: { fur: '#ffffff', top: '#2a2522', muzzle: '#ffffff', cheeks: '#b5651d', ear: 'floppy', earFur: '#2a2522', eye: '#6b3a1a', hat: 'dino' },
-    ab: { key: 'stomp', icon: '🦖', name: 'Dino Stomp', desc: 'Slams down and shakes obstacles apart!' } },
+    ab: { key: 'stomp', icon: '🦖', name: 'Dino Stomp', desc: 'Giant stomp that smashes everything on screen!' } },
 ];
-const ABILITY_TIME = { nitro: 3, water: 1.2, glide: 3.5, blade: 4, magnet: 5, hover: 3.5, plow: 3.5, ears: 5, dash: 2.5, stomp: 0 };
+const ABILITY_TIME = { nitro: 3.5, water: 3, glide: 4.5, blade: 4.5, magnet: 5, hover: 4.5, plow: 4.5, ears: 6, dash: 1.4, stomp: 1.6 };
 const SMASHERS = ['nitro', 'blade', 'plow', 'dash'];
 
 const TRUCKS = [
@@ -607,7 +607,7 @@ function buildTruck(p, tk, opts = {}) {
   // magnet ring / glow (hidden until used)
   const ringM = mesh(geo('magRing', () => new THREE.TorusGeometry(1.25, 0.03, 8, 48)), mat('#4cc9f0', { basic: true, opacity: 0.7 }), 0, 0.9, 0, 1, 1, 1, false);
   ringM.visible = false; root.add(ringM); ud.magRing = ringM;
-  const glow = mesh(sphereG(), mat('#4cc9f0', { basic: true, opacity: 0.25 }), 0, 0.9, 0, 1.2, 0.95, 0.85, false);
+  const glow = mesh(sphereG(), mat(p.color, { basic: true, opacity: 0.28 }), 0, 0.95, 0, 1.25, 1.0, 0.9, false);
   glow.visible = false; root.add(glow); ud.glow = glow;
   const bed = new THREE.Group(); bed.position.set(-0.62, 1.04, 0); chassis.add(bed); ud.bed = bed; ud.bedCount = 0;
   root.traverse(o => { if (o.isMesh && !o.material.transparent && !o.material.isMeshBasicMaterial) o.castShadow = true; });
@@ -979,6 +979,7 @@ let entities = [], particles = [], popups = [], flyers = [], confetti = [], wave
 let nextX = 0, segSinceFriend = 0, friendTarget = 3, sinceHazard = 0, wallsSpawned = 0;
 let boostHeld = false, mudSlow = 0, mudLevel = 0, hurtSlow = 0, invuln = 0, shake = 0, iceT = 0;
 let charge = [1, 1], abilityT = 0, abilityKey = null, swapCool = 0, slamming = false;
+let cineT = 0, flashT = 0, flashColor = '#fff', dashT = 0, floatT = 0, specialHits = 0, prompted = false;
 let ended = false, rival = null, finishX = 0, finishEnt = null, loopRide = null;
 let fsScore = 0, fsCombo = 1, fsComboT = 0, fsTime = 0, wheelieHeld = false, wheelieAcc = 0, donutT = 0, crashT = 0, trick = { target: 0, done: 0 };
 const truck = { sx: 300, y: GROUND, prevY: GROUND, vy: 0, onGround: true, jumps: 2, angle: 0, spin: 0, spinning: false, spinRate: 0, squash: 0, falling: false };
@@ -989,12 +990,12 @@ function fxState() {
   const k = abilityT > 0 ? abilityKey : null;
   return { nitro: k === 'nitro', water: k === 'water', glide: k === 'glide', blade: k === 'blade', magnet: k === 'magnet' || k === 'ears', hover: k === 'hover', plow: k === 'plow', dash: k === 'dash' };
 }
-function invincible() { return abilityT > 0 && (abilityKey === 'nitro' || abilityKey === 'dash'); }
+function invincible() { return abilityT > 0 || dashT > 0; }   // every special keeps you safe
 function speed() {
   const fx = fxState();
   const mudOk = pup.id === 'zuma' || invincible();
   return curLevel.speed * (boostHeld ? 1.5 : 1) * (mudSlow > 0 && !mudOk ? 0.6 : 1) * (hurtSlow > 0 ? 0.45 : 1)
-    * (fx.nitro ? 1.6 : fx.dash ? 1.45 : 1) * (iceT > 0 && pup.id !== 'everest' ? 1.3 : 1) * (donutT > 0 ? 0.35 : 1) * (crashT > 0 ? 0.5 : 1);
+    * (fx.nitro ? 1.8 : dashT > 0 ? 5 : fx.blade || fx.plow ? 1.2 : 1) * (iceT > 0 && pup.id !== 'everest' ? 1.3 : 1) * (donutT > 0 ? 0.35 : 1) * (crashT > 0 ? 0.5 : 1);
 }
 function progress() {
   const g = curLevel.goal;
@@ -1013,6 +1014,7 @@ function startLevel() {
   camX = 0; entities = []; particles = []; popups = []; flyers = []; confetti = []; waves = [];
   hearts = MAX_HEARTS; bones = 0; crushed = 0; rescued = 0; flips = 0; scrapCount = 0; bed = [];
   charge = [1, 1]; abilityT = 0; abilityKey = null; swapCool = 0; slamming = false; active = 0; pup = team[0];
+  cineT = 0; flashT = 0; dashT = 0; floatT = 0; specialHits = 0; prompted = false;
   invuln = 0; hurtSlow = 0; mudSlow = 0; mudLevel = 0; shake = 0; iceT = 0; ended = false; loopRide = null;
   fsScore = 0; fsCombo = 1; fsComboT = 0; fsTime = FS_TIME; wheelieHeld = false; wheelieAcc = 0; donutT = 0; crashT = 0; trick = { target: 0, done: 0 };
   segSinceFriend = 0; sinceHazard = 0; wallsSpawned = 0; friendTarget = rint(curLevel.friendEvery || [2, 3]);
@@ -1164,35 +1166,44 @@ function honk() {
   setTimeout(sfx.bark, 700);
   popup('HONK!', truckWX() + 60, truck.y - 210, '#c58cff', 34);
 }
+const SPECIAL_SFX = {
+  nitro: () => { for (let i = 0; i < 4; i++) { tone(700, 0.22, 'square', 0.1, 1100, i * 0.44); tone(1100, 0.22, 'square', 0.1, 700, i * 0.44 + 0.22); } noise(1.2, 0.3, 1800); },
+  water: () => { noise(3, 0.35, 2200); tone(200, 0.5, 'sine', 0.2, 500); },
+  glide: () => { for (let i = 0; i < 18; i++) noise(0.08, 0.35, 500, i * 0.12); tone(300, 1.2, 'sawtooth', 0.08, 900); },
+  blade: () => { noise(1.5, 0.45, 300); tone(60, 1.5, 'sawtooth', 0.2, 90); },
+  magnet: () => { for (let i = 0; i < 6; i++) tone(400 + i * 150, 0.15, 'square', 0.08, 1600, i * 0.1); },
+  hover: () => { tone(110, 2, 'sawtooth', 0.1, 140); noise(2, 0.2, 900); },
+  plow: () => { noise(2, 0.35, 1500); tone(90, 1.2, 'square', 0.1, 70); },
+  ears: () => { for (let i = 0; i < 3; i++) tone(1800, 0.12, 'sine', 0.15, 2400, i * 0.25); },
+  dash: () => { tone(200, 0.5, 'sawtooth', 0.15, 2000); noise(0.5, 0.4, 3000); },
+  stomp: () => { noise(0.9, 0.5, 400); tone(110, 0.9, 'sawtooth', 0.2, 60); },
+};
 function useSpecial() {
-  if (state !== 'play' || mode !== 'campaign' || charge[active] < 1 || abilityT > 0 || ended) return;
+  if (state !== 'play' || mode !== 'campaign' || charge[active] < 1 || abilityT > 0 || dashT > 0 || ended) return;
   charge[active] = 0;
   const k = ab();
-  abilityKey = k; abilityT = ABILITY_TIME[k];
-  sfx.power();
-  if (k !== 'stomp') popup(pup.ab.name.toUpperCase() + '!', truckWX() + 60, truck.y - 240, pup.color, 40);
-  const wx = truckWX();
-  if (k === 'water') {
-    for (const e of entities) {
-      if (e.x > wx - 50 && e.x < wx + 700) {
-        if (e.t === 'fire' && !e.broken) { e.broken = true; e.steam = 1; sfx.hiss(); popup('FIRE OUT!', e.x + 45, GROUND - 160, '#4cc9f0', 38); bones += 2; }
-        if (e.t === 'mud') e.dried = true;
-      }
-    }
-    mudLevel = 0;
-  } else if (k === 'glide') {
-    if (truck.onGround) { truck.onGround = false; truck.vy = -760; truck.jumps = maxJumps() - 1; }
-  } else if (k === 'stomp') {
-    slamming = true;
-    if (truck.onGround) { truck.onGround = false; truck.vy = -800; }
-    else truck.vy = Math.max(truck.vy, 300);
-  }
-  speak(pup.ab.name + '!');
+  abilityKey = k; abilityT = ABILITY_TIME[k]; specialHits = 0;
+  cineT = 0.55; flashT = 0.45; flashColor = pup.color; shake = 0.25;
+  sfx.power(); setTimeout(() => (SPECIAL_SFX[k] || sfx.power)(), 250);
+  showBanner(pup);
+  burst(truckWX(), truck.y - 90, 40, [pup.color, '#ffffff', '#ffd23f'], 520, 300, 10);
+  if (k === 'dash') { dashT = 0.45; }
+  else if (k === 'stomp') { slamming = true; truck.onGround = false; truck.vy = -1150; truck.spinning = false; }
+  else if (k === 'water') mudLevel = 0;
+  speak(`${pup.name}! ${pup.ab.name}!`);
+}
+function showBanner(p) {
+  const b = $('banner');
+  $('bannerImg').src = pupThumbs[p.id] || '';
+  $('bannerName').textContent = p.name.toUpperCase();
+  $('bannerMove').textContent = `${p.ab.icon} ${p.ab.name}!`;
+  b.style.setProperty('--pc', p.color);
+  b.classList.remove('go'); void b.offsetWidth; b.classList.add('go');
 }
 function swapPup() {
   if (state !== 'play' || mode !== 'campaign' || swapCool > 0 || ended || loopRide) return;
   active = 1 - active; pup = team[active];
-  abilityT = 0; abilityKey = null; slamming = false;
+  abilityT = 0; abilityKey = null; slamming = false; dashT = 0;
   truck.jumps = Math.min(truck.jumps, maxJumps());
   if (truck.onGround) truck.jumps = maxJumps();
   swapCool = 2;
@@ -1216,8 +1227,13 @@ function hurt(label) {
   if (hearts <= 0) endLevel(false, 'hearts');
   return true;
 }
-function smash(e, label) {
+function launch(e, power = 1) {
+  e.fly = { dx: 0, dy: 0, vx: (550 + Math.random() * 450) * power, vy: -(550 + Math.random() * 400) * power, vr: (Math.random() - 0.5) * 14, rot: 0, t: 0 };
+}
+function smash(e, label, fling) {
   e.broken = true;
+  if (e.t === 'fire') { e.steam = 1; sfx.hiss(); specialHits++; }
+  else if (fling || abilityT > 0 || dashT > 0) { launch(e); specialHits++; charge[active] = Math.min(1, charge[active] + 0.02); }
   sfx.stomp();
   const cols = e.t === 'tires' ? ['#1b1b1b', '#333', '#ffcc00'] : e.t === 'snowman' ? ['#ffffff', '#dfe9f7', '#ff8c1a'] : ['#6f7b88', '#8d99a6', '#5c6773', '#b0aa9b'];
   burst(e.x + e.w / 2, GROUND - e.h / 2, e.t === 'wall' ? 30 : 16, cols, 420, 1100, 9);
@@ -1225,7 +1241,8 @@ function smash(e, label) {
   bones += 2; shake = Math.max(shake, 0.2);
 }
 function canBreak(e) {
-  const k = abilityT > 0 ? abilityKey : null;
+  if (abilityT > 0 || dashT > 0) return true;
+  const k = null;
   if (k === 'nitro' || k === 'dash') return true;
   if (e.t === 'fire') return false;
   if (pup.id === 'rubble' && e.t !== 'tires') return true;   // Rubble's blade is always on for stone
@@ -1251,10 +1268,19 @@ function update(dt) {
     truck.y = GROUND; truck.angle = 0; truck.squash = 0;
     updateFx(dt); return;
   }
-  mudSlow -= dt; hurtSlow -= dt; invuln -= dt; iceT -= dt; swapCool -= dt; crashT -= dt;
+  flashT -= dt;
+  if (cineT > 0) { cineT -= dt; dt *= 0.2; }        // slow-motion moment when a special starts
+  mudSlow -= dt; hurtSlow -= dt; invuln -= dt; iceT -= dt; swapCool -= dt; crashT -= dt; dashT -= dt; floatT -= dt;
   shake = Math.max(0, shake - dt);
-  if (abilityT > 0) { abilityT -= dt; if (abilityT <= 0) abilityKey = null; }
-  for (let i = 0; i < 2; i++) if (!(i === active && abilityT > 0)) charge[i] = Math.min(1, charge[i] + dt / 7);
+  if (abilityT > 0) {
+    abilityT -= dt;
+    if (abilityT <= 0) {
+      if (abilityKey === 'glide' || abilityKey === 'hover') { floatT = 1.2; truck.vy = 0; }
+      abilityKey = null; invuln = Math.max(invuln, 0.8);
+      if (specialHits > 0) { popup(`SUPER x${specialHits}!`, truckWX() + 40, truck.y - 260, '#ffd000', 56); bones += specialHits; sfx.rescue(); }
+    }
+  }
+  for (let i = 0; i < 2; i++) if (!(i === active && abilityT > 0)) charge[i] = Math.min(1, charge[i] + dt / 9);
   mudLevel = Math.max(0, mudLevel - dt * 0.15);
   const fx = fxState();
 
@@ -1322,7 +1348,18 @@ function update(dt) {
   if (overPit && !truck.falling && (fx.hover || fx.nitro)) overPit = null;   // hover & nitro skim over water
 
   truck.prevY = truck.y;
-  if (truck.onGround) {
+  const flying = fx.glide || fx.hover;
+  if (flying) {
+    // Skye flies high above everything; Zuma hovers above low obstacles and water
+    const target = GROUND - (fx.glide ? 345 : 150) + Math.sin(time * 4) * 8;
+    truck.onGround = false; truck.falling = false; truck.spinning = false; slamming = false;
+    truck.vy = (target - truck.y) * 5;
+    truck.y += truck.vy * dt;
+    truck.angle += ((fx.glide ? -0.08 : 0) + Math.sin(time * 3) * 0.04 - truck.angle) * Math.min(1, dt * 6);
+    truck.jumps = maxJumps();
+    if (Math.random() < 0.7) puff(wx - 40 + Math.random() * 80, truck.y + 10, fx.glide ? '#ffffff' : '#bfe9ff', -120, 120, 8, 0.4, 0);
+  }
+  if (!flying && truck.onGround) {
     if (overPit) { truck.onGround = false; truck.vy = 50; truck.falling = true; truck.jumps = 0; sfx.fall(); }
     else {
       truck.y = rampY !== null ? rampY : GROUND;
@@ -1331,11 +1368,11 @@ function update(dt) {
       truck.angle += (target - truck.angle) * Math.min(1, dt * 12);
     }
   }
-  if (!truck.onGround) {
+  if (!flying && !truck.onGround) {
     let g = GRAV * (pup.id === 'skye' ? 0.85 : 1);
+    if (floatT > 0 && truck.vy > 160) truck.vy = 160;   // gentle landing after flying
     if (slamming && truck.vy > -200) { truck.vy = Math.max(truck.vy, 1500); g = 0; }
     truck.vy += g * dt;
-    if (fx.glide && truck.vy > 120) truck.vy = 120;
     truck.y += truck.vy * dt;
     if (truck.spinning) truck.angle += truck.spinRate * dt;
     else truck.angle += (Math.max(-0.35, Math.min(0.3, truck.vy * 0.0004)) - truck.angle) * Math.min(1, dt * 6);
@@ -1393,9 +1430,12 @@ function update(dt) {
     } else wheelieAcc = 0;
   }
 
+  runSpecial(dt, wx, fx);
+  for (const e of entities) if (e.fly) { const f = e.fly; f.t += dt; f.vy += 1500 * dt; f.dx += f.vx * dt; f.dy += f.vy * dt; f.rot += f.vr * dt; }
+
   // collisions (truck box: wx±75, truck.y-150..truck.y)
   const top = truck.y - 150, L = wx - 75, Rt = wx + 75;
-  const pull = fx.magnet ? 360 : 0;
+  const pull = fx.magnet || fx.nitro ? (abilityKey === 'nitro' ? 260 : W) : 0;
   for (const e of entities) {
     if (pull && (e.t === 'bone' || e.t === 'scrap' || e.t === 'goodie') && !e.got && e.x > wx - 100 && e.x < wx + pull + 200) {
       e.x += (wx - e.x) * Math.min(1, dt * 5); e.y += (truck.y - 80 - e.y) * Math.min(1, dt * 5);
@@ -1403,7 +1443,8 @@ function update(dt) {
     if (e.t === 'car') {
       if (e.crushed) { e.crushT += dt; continue; }
       if (Rt > e.x && L < e.x + e.w && truck.y > GROUND - e.h && !truck.falling) {
-        e.crushed = true; crushed++; bones += 1;
+        e.crushed = true; crushed++; bones += 1; charge[active] = Math.min(1, charge[active] + 0.04);
+        if (invincible()) { launch(e, 0.8); specialHits++; }
         sfx.crunch();
         burst(e.x + e.w / 2, GROUND - 30, 14, [e.color, '#cdeeff', '#ffffff', '#ffcc00'], 380, 1000, 7);
         popup(['CRUSH!', 'SMASH!', 'CRUNCH!', 'WOW!'][Math.floor(Math.random() * 4)], e.x + e.w / 2, GROUND - 150, '#ff4d6d', 42);
@@ -1435,7 +1476,7 @@ function update(dt) {
     } else if (e.t === 'bone' && !e.got) {
       if (e.x > L - 15 && e.x < Rt + 15 && e.y > top - 20 && e.y < truck.y) {
         e.got = true; bones++; sfx.bone();
-        charge[active] = Math.min(1, charge[active] + 0.04);
+        charge[active] = Math.min(1, charge[active] + 0.05);
         burst(e.x, e.y, 6, ['#fff36b', '#ffffff'], 200, 300, 5);
         if (mode === 'freestyle') fsScore += 10;
       }
@@ -1485,7 +1526,6 @@ function update(dt) {
     }
   }
 
-  if (fx.water) for (let i = 0; i < 3; i++) particles.push({ x: wx + 70, y: truck.y - 118, z: 0.25, vx: 700 + Math.random() * 200, vy: -150 + Math.random() * 120, vz: 0, life: 0.6, max: 0.6, color: i % 2 ? '#4cc9f0' : '#bfe9ff', size: 6, grav: 600 });
   if ((fx.plow || fx.blade) && truck.onGround && Math.random() < 0.6) burst(wx + 90, GROUND - 10, 1, curLevel.theme === 'snow' ? ['#fff'] : ['#c99a6a'], 200, 600, 6);
   if (pup.design === 'dozer' && truckType.id === 'pup' && Math.random() < 0.15) puff(wx + 7, truck.y - 165, 'rgba(120,120,120,.6)', -40, -60, 9, 0.8);
 
@@ -1518,11 +1558,64 @@ function crash() {
   burst(truckWX(), GROUND - 40, 20, ['#c99a6a', '#555', '#ffcc00'], 360, 900, 8);
 }
 function dinoQuake(wx) {
-  sfx.quake(); shake = 0.6;
-  waves.push({ x: wx, r: 0, life: 0.6 });
-  popup('DINO STOMP!', wx, GROUND - 260, '#8bc34a', 48);
-  for (const e of entities) if (['boulder', 'tires', 'snowman', 'wall'].includes(e.t) && !e.broken && e.x > wx - 120 && e.x < wx + 520) smash(e, 'BOOM!');
-  for (const e of entities) if (e.t === 'car' && !e.crushed && e.x > wx - 120 && e.x < wx + 360) { e.crushed = true; crushed++; sfx.crunch(); }
+  sfx.quake(); shake = 0.9; flashT = 0.3; flashColor = '#8bc34a';
+  waves.push({ x: wx, r: 0, life: 0.8 }, { x: wx, r: -250, life: 1.0 });
+  popup('DINO STOMP!', wx, GROUND - 270, '#8bc34a', 56);
+  let n = 0;
+  for (const e of entities) {
+    if (e.x < wx - 200 || e.x > wx + W) continue;
+    if (['boulder', 'tires', 'snowman', 'wall', 'fire'].includes(e.t) && !e.broken) { e.broken = true; launch(e, 1.2); n++; burst(e.x + e.w / 2, GROUND - 30, 10, ['#8d99a6', '#c99a6a'], 380, 1000, 8); }
+    if (e.t === 'car' && !e.crushed) { e.crushed = true; crushed++; launch(e, 1.1); n++; }
+  }
+  specialHits += n;
+  if (n) sfx.crunch();
+}
+const OBSTACLES = ['boulder', 'tires', 'snowman', 'wall', 'fire'];
+function runSpecial(dt, wx, fx) {
+  const k = abilityT > 0 ? abilityKey : null;
+  if (dashT > 0) { for (let i = 0; i < 4; i++) puff(wx - 60 - Math.random() * 200, truck.y - 30 - Math.random() * 110, i % 2 ? '#ffd23f' : pup.color, -300, 0, 9, 0.35); }
+  if (!k) return;
+  if (k === 'water') {
+    // a big jet that blasts everything ahead off the track
+    const reach = wx + 950;
+    for (let i = 0; i < 6; i++) particles.push({ x: wx + 70, y: truck.y - 120, z: 0.25 + (Math.random() - 0.5) * 0.3, vx: 900 + Math.random() * 300, vy: -260 + Math.random() * 160, vz: (Math.random() - 0.5) * 0.6, life: 0.75, max: 0.75, color: i % 2 ? '#4cc9f0' : '#e6f7ff', size: 7 + Math.random() * 5, grav: 700 });
+    for (const e of entities) {
+      if (e.x < wx + 60 || e.x > reach) continue;
+      if (e.t === 'fire' && !e.broken) { e.broken = true; e.steam = 1; specialHits++; sfx.hiss(); popup('FIRE OUT!', e.x + 36, GROUND - 170, '#4cc9f0', 40); }
+      else if (OBSTACLES.includes(e.t) && !e.broken) { e.broken = true; launch(e, 1.1); specialHits++; burst(e.x + e.w / 2, GROUND - 40, 14, ['#4cc9f0', '#ffffff'], 360, 700, 8); popup('WASHED AWAY!', e.x + e.w / 2, GROUND - 190, '#4cc9f0', 34); }
+      else if (e.t === 'car' && !e.crushed) { e.crushed = true; crushed++; launch(e, 0.9); specialHits++; burst(e.x + 48, GROUND - 30, 10, ['#4cc9f0', '#ffffff', e.color], 360, 800, 7); }
+      else if (e.t === 'mud' && !e.dried) { e.dried = true; specialHits++; popup('CLEAN!', e.x + e.w / 2, GROUND - 160, '#4cc9f0', 34); }
+      else if ((e.t === 'bone' || e.t === 'scrap' || e.t === 'goodie') && !e.got) { e.x += (wx - e.x) * Math.min(1, dt * 4); e.y += (truck.y - 80 - e.y) * Math.min(1, dt * 4); }
+    }
+  } else if (k === 'magnet') {
+    // Rocky recycles junk ahead into gears that fly to the truck
+    for (const e of entities) {
+      if (e.x < wx + 80 || e.x > wx + 900) continue;
+      if ((OBSTACLES.includes(e.t) && !e.broken) || (e.t === 'car' && !e.crushed)) {
+        if (e.t === 'car') { e.crushed = true; crushed++; } else e.broken = true;
+        e.recycled = true; specialHits++;
+        burst(e.x + (e.w || 60) / 2, GROUND - 40, 14, ['#2fae4a', '#9aa5b5', '#ffffff'], 300, 500, 8);
+        for (let i = 0; i < 2; i++) entities.push({ t: 'scrap', x: e.x + 20 + i * 40, y: GROUND - 80 - i * 40, got: false });
+        popup('RECYCLED!', e.x + 40, GROUND - 180, '#2fae4a', 36);
+      }
+    }
+    if (Math.random() < 0.5) puff(wx + (Math.random() - 0.3) * 600, truck.y - Math.random() * 300, '#4cc9f0', 0, 0, 5, 0.3);
+  } else if (k === 'ears') {
+    // Tracker hears danger and jumps for you
+    const kk = speed() / 330;
+    for (const e of entities) {
+      const d = e.x - wx;
+      if (['boulder', 'tires', 'snowman', 'fire', 'wall'].includes(e.t) && !e.broken && d > 60 * kk && d < 140 * kk && truck.onGround) jump();
+      if (((e.t === 'pit' && !e.canyon) || (e.t === 'bridge' && !bridgeDown(e))) && d > 20 * kk && d < 90 * kk && truck.onGround) jump();
+      if ((e.t === 'tires' && !e.broken || e.t === 'pit' && e.canyon) && d < 90 && d > -e.w && !truck.onGround && truck.vy > -150 && truck.jumps > 0) jump();
+      if (e.t === 'friend' && !e.done && e.x > wx && e.x < wx + W) { e.done = true; flyers.push({ kind: e.kind, fx: e.x, fy: e.balloon ? e.y - 20 : GROUND - 30, t: 0 }); sfx.rescue(); popup('I HEAR YOU!', e.x, GROUND - 220, '#7fa23a', 36); specialHits++; }
+    }
+  } else if (k === 'blade' || k === 'plow') {
+    for (const e of entities) if (OBSTACLES.includes(e.t) && !e.broken && e.x > wx && e.x < wx + 170) smash(e, k === 'plow' ? 'PLOWED!' : 'BULLDOZED!', true);
+    if (Math.random() < 0.8) burst(wx + 110, GROUND - 10, 2, k === 'plow' ? ['#ffffff', '#dfe9f7'] : ['#c99a6a', '#a8743f'], 300, 700, 8);
+  } else if (k === 'nitro') {
+    for (let i = 0; i < 2; i++) puff(wx - 90, truck.y - 70 + (Math.random() - 0.5) * 30, i ? '#4cc9f0' : '#ffffff', -500, 0, 10, 0.3);
+  }
 }
 function updateFx(dt) {
   for (const p of particles) { p.x += p.vx * dt; p.y += p.vy * dt; p.z += (p.vz || 0) * dt; p.vy += p.grav * dt; p.life -= dt; }
@@ -1609,16 +1702,19 @@ function makeEntityMesh(e) {
 function syncEntities() {
   const live = new Set();
   for (const e of entities) {
-    if (!e.mesh) e.mesh = makeEntityMesh(e);
+    if (!e.mesh) { e.mesh = makeEntityMesh(e); if (e.mesh) e.mesh.userData.bx = e.mesh.position.x; }
     if (!e.mesh) continue;
     live.add(e.mesh);
     const m = e.mesh, ud = m.userData;
+    if (e.fly) { m.position.x = ud.bx + e.fly.dx * S; m.position.y = -e.fly.dy * S; m.rotation.z = -e.fly.rot; m.rotation.x = e.fly.rot * 0.4; }
     switch (e.t) {
       case 'car':
-        if (e.crushed) { const k = Math.max(0.32, 1 - e.crushT * 6); ud.inner.scale.set(1 + (1 - k) * 0.2, k, 1 + (1 - k) * 0.1); ud.inner.rotation.z = (1 - k) * 0.1; }
+        if (e.recycled) m.visible = false;
+        else if (e.crushed && !e.fly) { const k = Math.max(0.32, 1 - e.crushT * 6); ud.inner.scale.set(1 + (1 - k) * 0.2, k, 1 + (1 - k) * 0.1); ud.inner.rotation.z = (1 - k) * 0.1; }
         break;
-      case 'boulder': case 'snowman': case 'tires': case 'wall': m.visible = !e.broken; break;
+      case 'boulder': case 'snowman': case 'tires': case 'wall': m.visible = !e.recycled && (!e.broken || (e.fly && e.fly.t < 2.5)); break;
       case 'fire':
+        if (e.recycled) m.visible = false;
         ud.flames.forEach((f, i) => { f.visible = !e.broken; f.scale.y = 0.6 + Math.sin(time * 14 + i * 2) * 0.12; f.position.y = f.scale.y / 2 + 0.05; });
         break;
       case 'bone': m.position.set(e.x * S, (GROUND - e.y) * S, 0); m.rotation.y = time * 3 + e.x; m.visible = !e.got; break;
@@ -1665,10 +1761,22 @@ function syncParticles() {
   }
   pMesh.count = n; pMesh.instanceMatrix.needsUpdate = true; if (pMesh.instanceColor) pMesh.instanceColor.needsUpdate = true;
 }
+const jet = new THREE.Group(); scene.add(jet); jet.visible = false;
+jet.add(mesh(cylG(12), mat('#4cc9f0', { basic: true, opacity: 0.55 }), 0, 0, 0, 0.13, 1, 0.13, false));
+jet.add(mesh(cylG(12), mat('#ffffff', { basic: true, opacity: 0.7 }), 0, 0, 0, 0.06, 1, 0.06, false));
+const upV = new THREE.Vector3(0, 1, 0);
+function syncJet(fx, tx, ty) {
+  jet.visible = !!fx.water;
+  if (!fx.water) return;
+  const a = new THREE.Vector3(tx + 0.75, ty + 1.2, 0.25), b = new THREE.Vector3(tx + 7.5, 0.4 + Math.sin(time * 30) * 0.08, 0.25);
+  jet.position.copy(a).add(b).multiplyScalar(0.5);
+  const len = a.distanceTo(b); jet.children.forEach((c, i) => { c.scale.y = len; const w = (i ? 0.06 : 0.14) * (1 + Math.sin(time * 40 + i) * 0.15); c.scale.x = c.scale.z = w; });
+  jet.quaternion.setFromUnitVectors(upV, b.clone().sub(a).normalize());
+}
 const waveMeshes = [];
 function syncWaves() {
   while (waveMeshes.length < waves.length) { const m = mesh(geo('wave', () => new THREE.TorusGeometry(1, 0.04, 6, 40)), mat('#8bc34a', { basic: true, opacity: 0.8 }), 0, 0.05, 0, 1, 1, 1, false); m.rotation.x = Math.PI / 2; scene.add(m); waveMeshes.push(m); }
-  waveMeshes.forEach((m, i) => { const w = waves[i]; m.visible = !!w; if (w) { m.position.x = w.x * S; m.scale.set(w.r * S, w.r * S, 1); m.material.opacity = w.life / 0.6; } });
+  waveMeshes.forEach((m, i) => { const w = waves[i]; m.visible = !!w; if (w) { m.position.x = w.x * S; m.scale.set(Math.max(0.01, w.r * S), Math.max(0.01, w.r * S), 1); m.material.opacity = Math.min(1, w.life / 0.6); } });
 }
 const flyerMeshes = new Map();
 function syncFlyers() {
@@ -1706,7 +1814,7 @@ function poseTruck(model, x, y, angle, spin, squash, fx, extras = {}) {
   ud.blink.forEach((l, i) => { l.visible = (i % 2) === flash || ud.blink.length === 1; });
   if (ud.cannon) ud.cannon.rotation.z = fx.water ? 0.25 : 0;
   ud.magRing.visible = !!fx.magnet; if (fx.magnet) { ud.magRing.rotation.y = time * 2; ud.magRing.scale.setScalar(1 + Math.sin(time * 8) * 0.08); }
-  ud.glow.visible = !!extras.glow;
+  ud.glow.visible = !!extras.glow; if (extras.glow) ud.glow.scale.set(1.25 + Math.sin(time * 16) * 0.06, 1.0 + Math.sin(time * 16) * 0.05, 0.9);
   if (ud.head) { ud.head.rotation.y = -0.75 + Math.sin(time * 1.3) * 0.15; ud.head.rotation.z = Math.sin(time * 2.1) * 0.06; }
 }
 
@@ -1743,8 +1851,9 @@ function render3D() {
   setTheme(state === 'play' || state === 'win' || state === 'fail' ? curLevel : (state === 'intro' ? curLevel : LEVELS[0]));
   const playing = state === 'play' || state === 'win' || state === 'fail';
   // camera follows the truck
-  const d = camDist();
-  const cx = (camX + W / 2) * S;
+  const cine = Math.max(0, Math.min(1, cineT / 0.55));
+  const d = camDist() * (1 - 0.32 * cine);
+  const cx = (camX + W / 2) * S * (1 - 0.55 * cine) + (truckWX() * S + 0.3) * 0.55 * cine;
   const ty = (GROUND - truck.y) * S;
   camLift += (Math.max(0, ty - 0.9) - camLift) * 0.08;
   const camY = 2.5 + camLift * 0.8;
@@ -1773,7 +1882,7 @@ function render3D() {
     { yaw: donutT > 0 ? (1 - donutT) * Math.PI * 4 : 0, glow: state === 'play' && invincible() });
   syncBed(playerModel);
   if (rivalModel && rival) { rivalModel.visible = playing; poseTruck(rivalModel, rival.x * S, 0, 0, rival.spin, 0, {}, { z: -1.25, scale: 0.92 }); }
-  syncParticles(); syncWaves(); syncFlyers();
+  syncParticles(); syncWaves(); syncFlyers(); syncJet(fx, truckWX() * S, ty);
   renderer.render(scene, camera);
 }
 
@@ -1804,6 +1913,19 @@ function renderOverlay() {
   c.setTransform(1, 0, 0, 1, 0, 0); c.clearRect(0, 0, hud.width, hud.height);
   c.setTransform(hudScale * dpr, 0, 0, hudScale * dpr, 0, 0);
   const playing = state === 'play' || state === 'win' || state === 'fail';
+  if (state === 'play') {
+    if (flashT > 0) { c.globalAlpha = Math.min(0.55, flashT / 0.45 * 0.55); c.fillStyle = flashColor; c.fillRect(0, 0, hudW, hudH); c.globalAlpha = 1; }
+    if (abilityKey === 'nitro' && abilityT > 0 || dashT > 0) {
+      c.strokeStyle = 'rgba(255,255,255,.75)'; c.lineCap = 'round';
+      for (let i = 0; i < 14; i++) { const y = Math.random() * hudH * 0.8 + hudH * 0.05, x = Math.random() * hudW, l = 80 + Math.random() * 220; c.lineWidth = 2 + Math.random() * 4; c.beginPath(); c.moveTo(x, y); c.lineTo(x - l, y); c.stroke(); }
+    }
+    if (abilityT > 0) {
+      const k = abilityT / ABILITY_TIME[abilityKey];
+      c.fillStyle = 'rgba(255,255,255,.92)'; rrect(c, hudW / 2 - 130, hudH - 46, 260, 30, 15); c.fill();
+      c.fillStyle = pup.color; rrect(c, hudW / 2 - 124, hudH - 40, 248 * k, 18, 9); c.fill();
+      label(c, `${pup.ab.icon} ${pup.ab.name.toUpperCase()}`, hudW / 2, hudH - 64, 24, '#fff', pup.dark);
+    }
+  }
   if (playing) {
     if (state === 'play') drawHints(c);
     for (const e of entities) if (e.t === 'bridge' && !bridgeDown(e) && e.x - camX < W && e.x - camX > -300) { const p = toHud(e.x + e.w / 2, GROUND - 200); label(c, 'WAIT!', p.x, p.y + Math.sin(time * 8) * 4, 28, '#ffcc00'); }
@@ -1832,8 +1954,10 @@ function drawHints(c) {
     else if (team[1 - active].id === 'rubble' || ['nitro', 'blade', 'plow', 'dash', 'stomp'].includes(team[1 - active].ab.key)) txt = '📱 PUP PAD!';
     else if (SMASHERS.includes(ab()) || ab() === 'stomp') txt = 'SPECIAL!';
     else txt = 'TOO TALL!';
-  } else if (curLevel.hints) txt = e.t === 'tires' ? 'JUMP x2!' : e.t === 'bridge' ? 'JUMP or WAIT!' : 'JUMP!';
+  } else if (mode === 'campaign' && charge[active] >= 1 && abilityT <= 0 && e.x - wx < 600) txt = `${pup.ab.icon} SPECIAL!`;
+  else if (curLevel.hints) txt = e.t === 'tires' ? 'JUMP x2!' : e.t === 'bridge' ? 'JUMP or WAIT!' : 'JUMP!';
   if (!txt) return;
+  if (txt.includes('SPECIAL') && !prompted) { prompted = true; speak(`Tap the special button! ${pup.ab.name}!`); }
   const p = toHud(e.x + (e.w || 0) / 2, GROUND - Math.min(e.h || 60, 300) - 70, 0.3);
   const y = p.y + Math.sin(time * 10) * 6;
   label(c, txt, p.x, y, 34, '#5fe07a');
@@ -2058,12 +2182,12 @@ function thumb(obj, w, h, camPos, look) {
   return thumbRenderer.domElement.toDataURL('image/png');
 }
 let pickSlot = 0;
-const pupTiles = [], truckTiles = [];
+const pupTiles = [], truckTiles = [], pupThumbs = {};
 PUPS.forEach((p) => {
   const b = document.createElement('button'); b.className = 'tile';
   const img = document.createElement('img'); img.alt = p.name;
   const head = buildPupHead(p, 0.5); head.rotation.y = -1.0;
-  img.src = thumb(head, 160, 160, new THREE.Vector3(0, 0.3, 2.7), new THREE.Vector3(0, 0.12, 0));
+  img.src = thumb(head, 160, 160, new THREE.Vector3(0, 0.3, 2.7), new THREE.Vector3(0, 0.12, 0)); pupThumbs[p.id] = img.src;
   const nm = document.createElement('b'); nm.textContent = p.name;
   const bd = document.createElement('div'); bd.className = 'badge';
   b.append(img, nm, bd);
@@ -2180,4 +2304,4 @@ function frame(now) {
 }
 requestAnimationFrame(frame);
 window.__pawjam = { get state() { return state; }, thumb, buildPupHead, buildTruck, PUPS, TRUCKS, THREE };
-if (location.search.includes('debug')) window.__g = { ent: () => entities, wx: truckWX, st: () => state, truck, hearts: () => hearts, prog: () => progress(), save, jump, useSpecial, swapPup, trickPress, openIntro, play, pup: () => pup, bd: bridgeDown, spd: speed, setBoost: v => boostHeld = v, setWheelie: v => wheelieHeld = v, score: () => fsScore, loop: () => loopRide, calls: () => renderer.info.render.calls };
+if (location.search.includes('debug')) window.__g = { ent: () => entities, wx: truckWX, st: () => state, truck, hearts: () => hearts, prog: () => progress(), save, jump, useSpecial, swapPup, trickPress, openIntro, play, pup: () => pup, bd: bridgeDown, spd: speed, setBoost: v => boostHeld = v, setWheelie: v => wheelieHeld = v, score: () => fsScore, loop: () => loopRide, calls: () => renderer.info.render.calls, setTeam: (a, b) => { team[0] = PUPS[a]; team[1] = PUPS[b]; }, charge: () => charge, hits: () => specialHits };

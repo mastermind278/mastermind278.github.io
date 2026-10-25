@@ -11,6 +11,15 @@
   * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; user-select: none; -webkit-user-select: none; }
   html, body { margin: 0; height: 100%; overflow: hidden; background: #7fd0ff; font-family: "Trebuchet MS", "Arial Rounded MT Bold", Arial, sans-serif; touch-action: none; }
   canvas#gl, canvas#hud { position: fixed; inset: 0; width: 100%; height: 100%; display: block; }
+  #banner { position: fixed; left: 0; right: 0; top: 11%; height: 110px; display: flex; align-items: center; gap: 16px; padding: 0 6vw;
+            background: linear-gradient(90deg, transparent, var(--pc, #1f6fd6) 18%, var(--pc, #1f6fd6) 82%, transparent); pointer-events: none;
+            transform: translateX(-110%); opacity: 0; z-index: 5; }
+  #banner.go { animation: bannerSlide 1.5s cubic-bezier(.2,.9,.3,1) forwards; }
+  @keyframes bannerSlide { 0% { transform: translateX(-110%) skewX(-12deg); opacity: 1; } 18% { transform: translateX(0) skewX(-12deg); opacity: 1; }
+                           78% { transform: translateX(2%) skewX(-12deg); opacity: 1; } 100% { transform: translateX(110%) skewX(-12deg); opacity: 0; } }
+  #banner img { height: 150px; width: 150px; margin-top: -30px; filter: drop-shadow(0 6px 6px rgba(0,0,0,.35)); }
+  #banner b { display: block; font-size: 44px; color: #fff; text-shadow: 0 4px 0 rgba(0,0,0,.35); letter-spacing: 2px; }
+  #banner span { display: block; font-size: 34px; font-weight: 900; color: #fff36b; text-shadow: 0 3px 0 rgba(0,0,0,.4); }
   #loading { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 40px; font-weight: 900; color: #fff; text-shadow: 0 3px 0 #1f4fa8; }
 
   .btn { border: none; cursor: pointer; font-family: inherit; font-weight: 900; color: #fff;
@@ -133,6 +142,7 @@
   </div>
 </div>
 
+<div id="banner"><img id="bannerImg" alt=""><div><b id="bannerName">CHASE</b><span id="bannerMove">🚨 Nitro Boost!</span></div></div>
 <div id="loading">Loading… 🐾</div>
 <div class="overlay" id="title">
   <div class="panel">
