@@ -39,6 +39,8 @@
   #controls .btn span { font-size: 36px; line-height: 1; text-shadow: none; }
   #controls .btn.sm { width: 86px; height: 86px; font-size: 14px; }
   #controls .btn.sm span { font-size: 28px; }
+  .lane { background: radial-gradient(circle at 50% 35%, #6aa8ff, #1f5fd6); width: 112px !important; height: 112px !important; }
+  .lane span { font-size: 54px !important; }
   #turboBtn, #trickBtn { background: radial-gradient(circle at 50% 35%, #ffb340, #ff6a00); }
   #hornBtn, #wheelieBtn { background: radial-gradient(circle at 50% 35%, #c58cff, #7b3fe4); }
   #padBtn { background: radial-gradient(circle at 50% 35%, #6aa8ff, #1f5fd6); }
@@ -130,11 +132,13 @@
 
 <div id="controls">
   <div class="grp">
-    <button class="btn" id="turboBtn" aria-label="Turbo"><span>🔥</span>TURBO</button>
-    <button class="btn sm camp-only" id="hornBtn" aria-label="Honk the horn"><span>📯</span>HONK</button>
-    <button class="btn fs-only" id="wheelieBtn" aria-label="Wheelie (hold)"><span>🛞</span>WHEELIE</button>
+    <button class="btn lane" id="leftBtn" aria-label="Move left"><span>◀</span></button>
+    <button class="btn lane" id="rightBtn" aria-label="Move right"><span>▶</span></button>
+    <button class="btn sm" id="turboBtn" aria-label="Turbo"><span>🔥</span>TURBO</button>
+    <button class="btn sm fs-only" id="wheelieBtn" aria-label="Wheelie (hold)"><span>🛞</span>WHEELIE</button>
   </div>
   <div class="grp">
+    <button class="btn sm camp-only" id="hornBtn" aria-label="Honk the horn"><span>📯</span>HONK</button>
     <button class="btn sm camp-only" id="padBtn" aria-label="Pup Pad: swap pups"><span>📱</span><b id="padName">PUP PAD</b></button>
     <button class="btn sm camp-only" id="specialBtn" aria-label="Special ability"><div class="fill" id="specialFill"></div><span id="specialIco">🚨</span><b>SPECIAL</b></button>
     <button class="btn fs-only" id="trickBtn" aria-label="Trick: flip or donut"><span>🌀</span>TRICK</button>
