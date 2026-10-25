@@ -61,7 +61,7 @@ const LEVELS = [
   { world: 0, name: 'Bone Hunt', ico: '🦴', goal: { type: 'bones', n: 25 }, speed: 310, sky: 1, theme: 'bay', gap: [340, 520], hints: true,
     tip: 'Bones are up high. Jump to grab them! Watch out for holes.', w: { bonesHigh: 4, bonesLow: 1, ramp: 2, boulder: 2, pit: 1.5, cars: 1, goodie: 0.6, scrap: 0.5 } },
   { world: 0, name: 'Mud Mountain', ico: '💦', goal: { type: 'rescue', n: 4 }, speed: 320, sky: 1, theme: 'mud', gap: [320, 500], friendEvery: [2, 3], balloon: 0.5,
-    tip: "Fires on the track! Jump them, or use Marshall's WATER CANNON. Zuma zooms through mud!", w: { mud: 3, pit: 1.5, fire: 2, boulder: 1.5, cars: 1, bonesHigh: 1, ramp: 1, goodie: 0.4, scrap: 0.5 } },
+    tip: "A giant FIRE WALL blocks the road! Only Marshall's WATER CANNON can put it out!", fireAt: [2600], w: { mud: 3, pit: 1.5, fire: 2, boulder: 1.5, cars: 1, bonesHigh: 1, ramp: 1, goodie: 0.4, scrap: 0.5 } },
   { world: 0, name: 'Save Chickaletta', ico: '🐔', goal: { type: 'reach', n: 7500, who: 'chickaletta' }, speed: 320, sky: 0, theme: 'bay', gap: [320, 480], maxWalls: 2,
     tip: 'Giant stone walls are too tall to jump! Tap the PUP PAD 📱 to call Rubble and SMASH them!', w: { wall: 1.2, boulder: 2, fire: 1.5, pit: 1, cars: 2, bonesHigh: 1, goodie: 0.4, scrap: 0.6 } },
   { world: 1, name: 'Snow Rally', ico: '⛷️', goal: { type: 'race', n: 9000 }, rival: 1.12, speed: 330, sky: 0, theme: 'snow', gap: [300, 470],
@@ -71,13 +71,13 @@ const LEVELS = [
   { world: 2, forceEvery: 1, name: 'Drawbridge Dash', ico: '👑', goal: { type: 'reach', n: 8500, who: 'mayor' }, speed: 340, sky: 2, theme: 'castle', gap: [300, 460], maxWalls: 2,
     tip: 'Cross the drawbridges when they are DOWN, or jump the moat! Save Mayor Goodway!', w: { bridge: 2.5, wall: 1, boulder: 1.5, fire: 1, cars: 1.5, bonesHigh: 1, goodie: 0.5, scrap: 0.5 } },
   { world: 2, forceEvery: 1, name: 'Castle Crush', ico: '🏰', goal: { type: 'crush', n: 18 }, speed: 350, sky: 0, theme: 'castle', gap: [290, 450], maxWalls: 3,
-    tip: 'Crush 18 cars in the royal courtyard!', w: { cars: 4, wall: 1, bridge: 1.5, fire: 1.5, boulder: 1.5, ramp: 1, goodie: 0.5, scrap: 0.5 } },
+    tip: 'Crush 18 cars in the royal courtyard! Watch out for FIRE WALLS. Call Marshall!', fireAt: [2600, 7500], w: { cars: 4, wall: 1, bridge: 1.5, fire: 1.5, boulder: 1.5, ramp: 1, goodie: 0.5, scrap: 0.5 } },
   { world: 3, forceEvery: 1, name: 'Backflip Bash', ico: '🔄', goal: { type: 'flips', n: 6 }, speed: 340, sky: 0, theme: 'stadium', gap: [300, 470],
     tip: 'Ramps = backflips! Loop-the-loops count too! Tire stacks need a DOUBLE jump.', w: { ramp: 3, loop: 1.5, tires: 1.5, boulder: 1.5, cars: 2, bonesHigh: 1, goodie: 0.4 } },
   { world: 3, forceEvery: 1, name: 'The Big Race', ico: '🏁', goal: { type: 'race', n: 9500 }, rival: 1.14, speed: 350, sky: 1, theme: 'stadium', gap: [300, 460],
     tip: 'Beat the rival truck to the finish! Hold TURBO to go fast.', w: { boulder: 2.5, pit: 1.5, tires: 1, fire: 1, cars: 2, ramp: 1, loop: 0.7, bonesHigh: 1, goodie: 0.6, scrap: 0.4 } },
   { world: 3, forceEvery: 1, name: 'Stadium Finale', ico: '🏆', goal: { type: 'crush', n: 22 }, speed: 370, sky: 3, theme: 'stadium', gap: [270, 430], maxWalls: 2,
-    tip: 'The big show! Crush 22 cars to become the PawJam Champion!', w: { cars: 5, tires: 1.5, boulder: 1.5, fire: 1.5, wall: 0.6, pit: 1.5, ramp: 2, loop: 0.8, goodie: 0.6, scrap: 0.5 } },
+    tip: 'The big show! Crush 22 cars. Stone walls need Rubble, FIRE WALLS need Marshall!', fireAt: [3000, 8000], w: { cars: 5, tires: 1.5, boulder: 1.5, fire: 1.5, wall: 0.6, pit: 1.5, ramp: 2, loop: 0.8, goodie: 0.6, scrap: 0.5 } },
 ];
 const ARENAS = [
   { name: 'Adventure Bay Stadium', ico: '🏟️', theme: 'stadium', sky: 0 },
@@ -703,6 +703,21 @@ function buildFire() {
   g.userData.flames = flames;
   return g;
 }
+function buildFireWall() {
+  const g = new THREE.Group();
+  g.add(block('#3a2a1e', 0, 0.12, 0, 1.1, 0.24, 3.2));
+  for (let i = 0; i < 5; i++) { const l = rod('#5a3a22', 0, 0.2, -1.3 + i * 0.65, 0.12, 1.2); l.rotation.z = Math.PI / 2 + (i % 2 ? 0.2 : -0.2); g.add(l); }
+  const flames = [];
+  for (let r = 0; r < 3; r++) for (let i = 0; i < 6; i++) {
+    const h = 2.6 + ((i * 7 + r * 3) % 5) * 0.35;
+    const o = mesh(coneG(10), mat(r === 1 ? '#ff4500' : '#ff7a00', { basic: true }), (r - 1) * 0.3, h / 2, -1.35 + i * 0.54, 0.34, h, 0.34, false);
+    const mid = mesh(coneG(10), mat('#ffb000', { basic: true }), 0, -0.1, 0, 0.7, 0.75, 0.7, false); o.add(mid);
+    const core = mesh(coneG(10), mat('#fff3a0', { basic: true }), 0, -0.25, 0, 0.4, 0.45, 0.4, false); o.add(core);
+    o.userData.h = h; o.userData.ph = r * 1.7 + i; g.add(o); flames.push(o);
+  }
+  g.userData.flames = flames;
+  return g;
+}
 let brickTex = null;
 function buildWall(h) {
   brickTex = brickTex || canvasTex(128, 128, (c, w, hh) => {
@@ -806,6 +821,7 @@ sun.castShadow = true; sun.shadow.mapSize.set(2048, 2048);
 Object.assign(sun.shadow.camera, { left: -9, right: 9, top: 6, bottom: -4, near: 1, far: 40 });
 sun.shadow.bias = -0.0005; sun.shadow.normalBias = 0.02;
 scene.add(sun); scene.add(sun.target);
+const fireLight = new THREE.PointLight('#ff7a1a', 0, 10, 1.5); scene.add(fireLight);   // permanent, so materials never recompile
 const world = new THREE.Group(); scene.add(world);           // entities live here
 const decor = new THREE.Group(); scene.add(decor);           // scenery
 let trackPlane, outerPlane, railMesh, snowPts = null, starPts = null, sea = null;
@@ -976,7 +992,7 @@ let levelIdx = 0, arenaIdx = 0, curLevel = LEVELS[0];
 let camX = 0, time = 0, W = 1000;
 let hearts = MAX_HEARTS, bones = 0, crushed = 0, rescued = 0, flips = 0, scrapCount = 0, bed = [];
 let entities = [], particles = [], popups = [], flyers = [], confetti = [], waves = [];
-let nextX = 0, segSinceFriend = 0, friendTarget = 3, sinceHazard = 0, wallsSpawned = 0;
+let nextX = 0, segSinceFriend = 0, friendTarget = 3, sinceHazard = 0, wallsSpawned = 0, firesSpawned = 0, teamRestore = null;
 let boostHeld = false, mudSlow = 0, mudLevel = 0, hurtSlow = 0, invuln = 0, shake = 0, iceT = 0;
 let charge = [1, 1], abilityT = 0, abilityKey = null, swapCool = 0, slamming = false;
 let cineT = 0, flashT = 0, flashColor = '#fff', dashT = 0, floatT = 0, specialHits = 0, prompted = false;
@@ -991,11 +1007,16 @@ function fxState() {
   return { nitro: k === 'nitro', water: k === 'water', glide: k === 'glide', blade: k === 'blade', magnet: k === 'magnet' || k === 'ears', hover: k === 'hover', plow: k === 'plow', dash: k === 'dash' };
 }
 function invincible() { return abilityT > 0 || dashT > 0; }   // every special keeps you safe
+function fireWallAhead(range) {
+  const wx = truckWX();
+  return entities.find(e => e.t === 'firewall' && !e.out && e.x - wx > -40 && e.x - wx < range);
+}
 function speed() {
   const fx = fxState();
+  const brake = fireWallAhead(520) && !ended ? 0.3 : 1;
   const mudOk = pup.id === 'zuma' || invincible();
   return curLevel.speed * (boostHeld ? 1.5 : 1) * (mudSlow > 0 && !mudOk ? 0.6 : 1) * (hurtSlow > 0 ? 0.45 : 1)
-    * (fx.nitro ? 1.8 : dashT > 0 ? 5 : fx.blade || fx.plow ? 1.2 : 1) * (iceT > 0 && pup.id !== 'everest' ? 1.3 : 1) * (donutT > 0 ? 0.35 : 1) * (crashT > 0 ? 0.5 : 1);
+    * brake * (fx.nitro ? 1.8 : dashT > 0 ? 5 : fx.blade || fx.plow ? 1.2 : 1) * (iceT > 0 && pup.id !== 'everest' ? 1.3 : 1) * (donutT > 0 ? 0.35 : 1) * (crashT > 0 ? 0.5 : 1);
 }
 function progress() {
   const g = curLevel.goal;
@@ -1017,7 +1038,7 @@ function startLevel() {
   cineT = 0; flashT = 0; dashT = 0; floatT = 0; specialHits = 0; prompted = false;
   invuln = 0; hurtSlow = 0; mudSlow = 0; mudLevel = 0; shake = 0; iceT = 0; ended = false; loopRide = null;
   fsScore = 0; fsCombo = 1; fsComboT = 0; fsTime = FS_TIME; wheelieHeld = false; wheelieAcc = 0; donutT = 0; crashT = 0; trick = { target: 0, done: 0 };
-  segSinceFriend = 0; sinceHazard = 0; wallsSpawned = 0; friendTarget = rint(curLevel.friendEvery || [2, 3]);
+  segSinceFriend = 0; sinceHazard = 0; wallsSpawned = 0; firesSpawned = 0; friendTarget = rint(curLevel.friendEvery || [2, 3]);
   nextX = 900;
   Object.assign(truck, { y: GROUND, prevY: GROUND, vy: 0, onGround: true, jumps: maxJumps(), angle: 0, spinning: false, squash: 0, falling: false });
   rival = null; finishEnt = null;
@@ -1031,6 +1052,7 @@ function startLevel() {
     const others = PUPS.filter(p => !team.includes(p));
     rival = { x: truck.sx, pup: others[Math.floor(Math.random() * others.length)], truck: TRUCKS[1], spin: 0 };
   }
+  if (curLevel.fireAt && !team.some(p => p.id === 'marshall')) { teamRestore = team[1]; team[1] = PUPS.find(p => p.id === 'marshall'); }
   setTheme(curLevel); resetDecor();
   useTruckModels();
   updatePadBtn();
@@ -1066,8 +1088,9 @@ function spawnSegment() {
   else if (sinceHazard >= (lv.forceEvery || 2) && hazards.length) type = forceHazard();
   else type = pickWeighted(lv.w);
   if (type === 'wall' && (wallsSpawned >= (lv.maxWalls || 0) || nextX < 2500)) type = hazards.length ? forceHazard() : 'cars';
+  if (lv.fireAt && firesSpawned < lv.fireAt.length && nextX >= lv.fireAt[firesSpawned]) type = 'firewall';   // scheduled fire walls
   segSinceFriend++;
-  sinceHazard = hazards.includes(type) || type === 'wall' ? 0 : sinceHazard + 1;
+  sinceHazard = hazards.includes(type) || type === 'wall' || type === 'firewall' ? 0 : sinceHazard + 1;
   const hard = levelIdx >= 5;
   switch (type) {
     case 'cars': nextX += carRow(nextX, rint([1, mode === 'freestyle' ? 4 : levelIdx >= 1 ? 4 : 3])); break;
@@ -1105,6 +1128,7 @@ function spawnSegment() {
     }
     case 'tires': entities.push({ t: 'tires', x: nextX, w: 64, h: 132, broken: false }); boneArc(nextX - 80, 3, 280, 60, 110); nextX += 64; break;
     case 'fire': entities.push({ t: 'fire', x: nextX, w: 72, h: 70, broken: false }); boneArc(nextX - 60, 3, 200, 50, 96); nextX += 72; break;
+    case 'firewall': firesSpawned++; entities.push({ t: 'firewall', x: nextX + 250, w: 110, h: 420, out: false, outT: 0 }); nextX += 420; break;
     case 'wall': wallsSpawned++; entities.push({ t: 'wall', x: nextX + 200, w: 56, h: 300, broken: false }); nextX += 260; break;
     case 'pit': {
       const w = rint([130, levelIdx >= 5 ? 200 : 170]);
@@ -1227,6 +1251,7 @@ function hurt(label) {
   if (hearts <= 0) endLevel(false, 'hearts');
   return true;
 }
+function Rt0(wx) { return wx + 75; }
 function launch(e, power = 1) {
   e.fly = { dx: 0, dy: 0, vx: (550 + Math.random() * 450) * power, vy: -(550 + Math.random() * 400) * power, vr: (Math.random() - 0.5) * 14, rot: 0, t: 0 };
 }
@@ -1431,6 +1456,22 @@ function update(dt) {
   }
 
   runSpecial(dt, wx, fx);
+  for (const e of entities) {
+    if (e.t !== 'firewall') continue;
+    if (e.out) { e.outT += dt; if (e.outT < 1.5 && Math.random() < 0.6) puff(e.x + Math.random() * e.w, GROUND - 40 - Math.random() * 200, '#e6ecf2', (Math.random() - 0.5) * 60, -160, 16, 1.0); continue; }
+    if (Math.random() < 0.5) puff(e.x + Math.random() * e.w, GROUND - 60 - Math.random() * 300, Math.random() < 0.5 ? '#ff6a00' : '#ffd23f', (Math.random() - 0.5) * 80, -220, 6, 0.8, 0, (Math.random() - 0.5) * 2);
+    const d = e.x - wx;
+    const mi = team.findIndex(p => p.id === 'marshall');
+    if (d < 1700 && !e.charged && mi >= 0) { e.charged = true; charge[mi] = 1; }          // Ryder tops up Marshall
+    if (d < 900 && !e.spoke) { e.spoke = true; speak(pup.id === 'marshall' ? 'Fire wall! Use your water cannon!' : 'Fire wall! Call Marshall on the Pup Pad!'); popup('🔥 FIRE WALL! 🔥', e.x, GROUND - 470, '#ff6a00', 44); }
+    if (Rt0(wx) - 20 > e.x && wx - 75 + 20 < e.x + e.w) {
+      // too hot to drive through: lose a heart and bounce back
+      if (!e.bumped) { e.bumped = true; shake = 0.4; sfx.bonk(); popup('TOO HOT!', wx, truck.y - 230, '#ff3b5c', 46); speak('Too hot! We need Marshall!'); }   // first bump is free
+      else if (invuln <= 0 && !ended) { hearts--; invuln = 1.6; shake = 0.5; sfx.bonk(); popup('TOO HOT!', wx, truck.y - 230, '#ff3b5c', 46); if (hearts <= 0) endLevel(false, 'fire'); }
+      camX = e.x - 480 - truck.sx; hurtSlow = 0.8; abilityT = Math.min(abilityT, abilityKey === 'water' ? abilityT : 0);
+      burst(e.x, GROUND - 120, 16, ['#ff6a00', '#ffd23f'], 320, 400, 8);
+    }
+  }
   for (const e of entities) if (e.fly) { const f = e.fly; f.t += dt; f.vy += 1500 * dt; f.dx += f.vx * dt; f.dy += f.vy * dt; f.rot += f.vr * dt; }
 
   // collisions (truck box: wx±75, truck.y-150..truck.y)
@@ -1581,7 +1622,8 @@ function runSpecial(dt, wx, fx) {
     for (let i = 0; i < 6; i++) particles.push({ x: wx + 70, y: truck.y - 120, z: 0.25 + (Math.random() - 0.5) * 0.3, vx: 900 + Math.random() * 300, vy: -260 + Math.random() * 160, vz: (Math.random() - 0.5) * 0.6, life: 0.75, max: 0.75, color: i % 2 ? '#4cc9f0' : '#e6f7ff', size: 7 + Math.random() * 5, grav: 700 });
     for (const e of entities) {
       if (e.x < wx + 60 || e.x > reach) continue;
-      if (e.t === 'fire' && !e.broken) { e.broken = true; e.steam = 1; specialHits++; sfx.hiss(); popup('FIRE OUT!', e.x + 36, GROUND - 170, '#4cc9f0', 40); }
+      if (e.t === 'firewall' && !e.out) { e.out = true; specialHits += 5; bones += 5; sfx.hiss(); setTimeout(sfx.win, 300); shake = 0.3; popup('FIRE WALL OUT!', e.x + 55, GROUND - 300, '#4cc9f0', 54); burst(e.x + 55, GROUND - 150, 40, ['#4cc9f0', '#ffffff', '#e6ecf2'], 420, 300, 12); speak("Great job, Marshall! I'm all fired up!"); }
+      else if (e.t === 'fire' && !e.broken) { e.broken = true; e.steam = 1; specialHits++; sfx.hiss(); popup('FIRE OUT!', e.x + 36, GROUND - 170, '#4cc9f0', 40); }
       else if (OBSTACLES.includes(e.t) && !e.broken) { e.broken = true; launch(e, 1.1); specialHits++; burst(e.x + e.w / 2, GROUND - 40, 14, ['#4cc9f0', '#ffffff'], 360, 700, 8); popup('WASHED AWAY!', e.x + e.w / 2, GROUND - 190, '#4cc9f0', 34); }
       else if (e.t === 'car' && !e.crushed) { e.crushed = true; crushed++; launch(e, 0.9); specialHits++; burst(e.x + 48, GROUND - 30, 10, ['#4cc9f0', '#ffffff', e.color], 360, 800, 7); }
       else if (e.t === 'mud' && !e.dried) { e.dried = true; specialHits++; popup('CLEAN!', e.x + e.w / 2, GROUND - 160, '#4cc9f0', 34); }
@@ -1655,6 +1697,7 @@ function makeEntityMesh(e) {
     case 'snowman': g = buildSnowman(); g.position.set((e.x + e.w / 2) * S, 0, 0); break;
     case 'tires': g = buildTires(); g.position.set((e.x + e.w / 2) * S, 0, 0); break;
     case 'fire': g = buildFire(); g.position.set((e.x + e.w / 2) * S, 0, 0); break;
+    case 'firewall': g = buildFireWall(); g.position.set((e.x + e.w / 2) * S, 0, 0); break;
     case 'wall': g = buildWall(e.h * S); g.position.set((e.x + e.w / 2) * S, 0, 0); break;
     case 'ramp': g = buildRamp(e); g.position.set(e.x * S, 0, 0); break;
     case 'loop': g = buildLoop(e); g.position.set(e.x * S, 0, 0); break;
@@ -1701,6 +1744,7 @@ function makeEntityMesh(e) {
 }
 function syncEntities() {
   const live = new Set();
+  fireLight.intensity = 0;
   for (const e of entities) {
     if (!e.mesh) { e.mesh = makeEntityMesh(e); if (e.mesh) e.mesh.userData.bx = e.mesh.position.x; }
     if (!e.mesh) continue;
@@ -1739,6 +1783,12 @@ function syncEntities() {
         break;
       }
       case 'mud': if (e.dried) { ud.water.visible = true; } break;
+      case 'firewall': {
+        const k = e.out ? Math.max(0, 1 - e.outT / 0.7) : 1;
+        ud.flames.forEach(f => { const h = f.userData.h * k * (0.85 + Math.sin(time * 12 + f.userData.ph) * 0.15); f.visible = k > 0.02; f.scale.y = Math.max(0.01, h); f.position.y = h / 2; });
+        if (k > 0) { fireLight.position.set(m.position.x, 2, 1.5); fireLight.intensity = 4 * k * (0.8 + Math.sin(time * 20) * 0.2); }
+        break;
+      }
       case 'finish': if (ud.citizen) { ud.citizen.visible = !e.saved; ud.help.visible = !e.saved; ud.citizen.position.y = 0.12 + Math.abs(Math.sin(time * 5)) * 0.06; } break;
     }
   }
@@ -1944,8 +1994,18 @@ function renderOverlay() {
   for (const p of confetti) { c.save(); c.translate(p.x, p.y); c.rotate(p.r); c.fillStyle = p.color; c.fillRect(-6, -3, 12, 6); c.restore(); }
 }
 function drawHints(c) {
-  if (!truck.onGround) return;
   const wx = truckWX();
+  const fw = fireWallAhead(1100);
+  if (fw) {
+    const isM = pup.id === 'marshall';
+    const txt = isM ? (abilityT > 0 ? '💦 SPRAY!' : '💦 WATER CANNON!') : '📱 CALL MARSHALL!';
+    const p = toHud(fw.x + fw.w / 2, GROUND - 330, 0.5), y = p.y + Math.sin(time * 10) * 6;
+    c.font = '900 36px Trebuchet MS, Arial';
+    const half = c.measureText(txt).width / 2 + 10;
+    label(c, txt, Math.max(half, Math.min(hudW - half - 10, p.x)), Math.max(110, y), 36, isM ? '#4cc9f0' : '#ffd23f');
+    return;
+  }
+  if (!truck.onGround) return;
   const e = entities.find(e => ['boulder', 'tires', 'pit', 'fire', 'snowman', 'wall', 'bridge'].includes(e.t) && !e.broken && e.x - wx > 110 && e.x - wx < (e.t === 'wall' ? 800 : 420));
   if (!e) return;
   let txt = null;
@@ -2013,7 +2073,7 @@ function updateHud() {
   }
   if (hudCache.ready !== ready) { $('specialBtn').classList.toggle('ready', ready); hudCache.ready = ready; }
   const wall = entities.some(e => e.t === 'wall' && !e.broken && e.x - truckWX() > 0 && e.x - truckWX() < 900) && !canBreak({ t: 'wall' });
-  const hint = wall && swapCool <= 0;
+  const hint = (wall || (fireWallAhead(1100) && pup.id !== 'marshall')) && swapCool <= 0;
   if (hudCache.hint !== hint) { $('padBtn').classList.toggle('hint', hint); hudCache.hint = hint; }
   const cool = swapCool > 0;
   if (hudCache.cool !== cool) { $('padBtn').classList.toggle('cool', cool); hudCache.cool = cool; }
@@ -2033,6 +2093,7 @@ function show(name) {
   topbarEl.style.display = inGame ? 'flex' : 'none';
   if (!inGame) { boostHeld = false; wheelieHeld = false; }
   document.body.classList.toggle('fs', mode === 'freestyle');
+  if (['title', 'garage', 'levels'].includes(name)) restoreTeam();
   if (['title', 'garage', 'levels'].includes(name) && (state === 'play' || state === 'win' || state === 'fail' || state === 'intro')) { pup = team[0]; rival = null; useTruckModels(); }
   state = name;
 }
@@ -2068,15 +2129,16 @@ function openLevels() {
   sec.append(grid); list.append(sec);
   show('levels');
 }
+function restoreTeam() { if (teamRestore) { team[1] = teamRestore; teamRestore = null; } }
 function openIntro(m, i) {
-  ensureAudio();
+  ensureAudio(); restoreTeam();
   mode = m;
   if (m === 'campaign') { levelIdx = i; curLevel = LEVELS[i]; } else { arenaIdx = i; curLevel = freestyleLevel(i); }
   $('introNum').textContent = m === 'campaign' ? `Level ${i + 1} · ${WORLDS[curLevel.world].name}` : 'Freestyle Stunt Arena';
   $('introName').textContent = curLevel.name;
   $('introIco').textContent = m === 'campaign' ? GOAL_ICON[curLevel.goal.type] : '🤘';
   $('introGoal').textContent = goalText(curLevel.goal);
-  $('introTip').textContent = curLevel.tip;
+  $('introTip').textContent = curLevel.tip + (curLevel.fireAt && !team.some(p => p.id === 'marshall') ? ' 🚒 Marshall joins your team as backup!' : '');
   clearWorld(); entities = []; rival = null;
   show('intro');
   speak(m === 'campaign' ? `Level ${i + 1}. ${curLevel.name}. ${goalText(curLevel.goal)}` : `Freestyle! ${curLevel.name}!`);
@@ -2127,9 +2189,9 @@ function endLevel(won, why) {
       show('win');
     } else {
       sfx.lose();
-      $('failIco').textContent = why === 'race' ? '🏁' : '💔';
-      $('failText').textContent = why === 'race' ? 'The rival truck won the race!' : 'Out of hearts!';
-      $('failTip').textContent = why === 'race' ? 'Hold TURBO and use your SPECIAL to go faster!' :
+      $('failIco').textContent = why === 'race' ? '🏁' : why === 'fire' ? '🔥' : '💔';
+      $('failText').textContent = why === 'race' ? 'The rival truck won the race!' : why === 'fire' ? 'The fire wall was too hot!' : 'Out of hearts!';
+      $('failTip').textContent = why === 'race' ? 'Hold TURBO and use your SPECIAL to go faster!' : why === 'fire' ? 'Fire walls need Marshall! Tap the PUP PAD 📱 to call him, then tap SPECIAL 💦.' :
         curLevel.w.wall ? 'Use the PUP PAD 📱 to swap to Rubble before big walls!' : 'Jump over rocks, fire and holes. Tap JUMP twice for a double jump!';
       show('fail');
       speak("Oh no! Let's try again!");
